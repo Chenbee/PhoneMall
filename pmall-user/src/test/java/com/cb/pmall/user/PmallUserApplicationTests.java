@@ -1,10 +1,10 @@
-package com.cb.pmall;
+package com.cb.pmall.user;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class PmallApplicationTests {
+class PmallUserApplicationTests {
 
     @Test
     void contextLoads() {
