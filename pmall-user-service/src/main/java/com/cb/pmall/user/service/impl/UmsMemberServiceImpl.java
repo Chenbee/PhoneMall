@@ -19,12 +19,12 @@ public class UmsMemberServiceImpl implements UmsMemberService {
     }
 
     @Override
-    public UmsMember getUser(Integer id) {
+    public UmsMember getUser(String id) {
         return umsMemberMapper.selectByPrimaryKey(id);
     }
 
     @Override
-    public void deleteUser(Integer id) {
+    public void deleteUser(String id) {
         umsMemberMapper.deleteByPrimaryKey(id);
     }
 

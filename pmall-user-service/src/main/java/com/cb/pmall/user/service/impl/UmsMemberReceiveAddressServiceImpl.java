@@ -16,19 +16,19 @@ public class UmsMemberReceiveAddressServiceImpl implements UmsMemberReceiveAddre
     UmsMemberReceiveAddressMapper umsMemberReceiveAddressMapper;
 
     @Override
-    public List<UmsMemberReceiveAddress> getAllAddress(Integer memberId) {
+    public List<UmsMemberReceiveAddress> getAllAddress(String memberId) {
         Example e = new Example(UmsMemberReceiveAddress.class);
         e.createCriteria().andEqualTo("memberId",memberId);
         return umsMemberReceiveAddressMapper.selectByExample(e);
     }
 
     @Override
-    public UmsMemberReceiveAddress getAddress(Integer id) {
+    public UmsMemberReceiveAddress getAddress(String id) {
         return umsMemberReceiveAddressMapper.selectByPrimaryKey(id);
     }
 
     @Override
-    public void deleteAddress(Integer id) {
+    public void deleteAddress(String id) {
         umsMemberReceiveAddressMapper.deleteByPrimaryKey(id);
     }
 

@@ -1,21 +1,15 @@
 package com.cb.pmall.beans;
 
-import javax.persistence.Column;
 import javax.persistence.Id;
 import java.io.Serializable;
 
-/**
- * @param
- * @return
- */
-public class PmsBaseSaleAttr implements Serializable {
+public class PmsBaseCatalog3 implements Serializable {
 
     @Id
-    @Column
-    String id ;
+    private String id;
+    private String name;
+    private String catalog2Id;
 
-    @Column
-    String name;
 
     public String getId() {
         return id;
@@ -31,5 +25,13 @@ public class PmsBaseSaleAttr implements Serializable {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getCatalog2Id() {
+        return catalog2Id;
+    }
+
+    public void setCatalog2Id(String catalog2Id) {
+        this.catalog2Id = catalog2Id;
     }
 }

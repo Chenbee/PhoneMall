@@ -3,6 +3,7 @@ package com.cb.pmall.beans;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.List;
 
 /**
  * @param
@@ -17,7 +18,15 @@ public class PmsBaseCatalog1 implements Serializable {
     private String name;
 
     @Transient
-//    private List<BaseCatalog2> catalog2s;
+    private List<PmsBaseCatalog2> catalog2s;
+
+    public List<PmsBaseCatalog2> getCatalog2s() {
+        return catalog2s;
+    }
+
+    public void setCatalog2s(List<PmsBaseCatalog2> catalog2s) {
+        this.catalog2s = catalog2s;
+    }
 
     public String getId() {
         return id;

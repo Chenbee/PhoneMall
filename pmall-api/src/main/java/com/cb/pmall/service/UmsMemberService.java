@@ -10,10 +10,10 @@ public interface UmsMemberService {
     List<UmsMember> getAllUser();
 
     // 获取单个用户
-    UmsMember getUser(Integer id);
+    UmsMember getUser(String id);
 
     // 删除单个用户
-    void deleteUser(Integer id);
+    void deleteUser(String id);
 
     // 修改一个用户
     void modifyUser(UmsMember umsMember);

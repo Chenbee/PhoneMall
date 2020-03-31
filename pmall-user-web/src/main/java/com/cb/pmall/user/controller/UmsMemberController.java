@@ -5,7 +5,6 @@ import com.cb.pmall.beans.UmsMember;
 import com.cb.pmall.beans.UmsMemberReceiveAddress;
 import com.cb.pmall.service.UmsMemberReceiveAddressService;
 import com.cb.pmall.service.UmsMemberService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -39,7 +38,7 @@ public class UmsMemberController {
      */
     @RequestMapping("/getUser")
     @ResponseBody
-    public UmsMember getUser(Integer id){
+    public UmsMember getUser(String id){
         UmsMember userMember =  umsMemberService.getUser(id);
         return userMember;
     }
@@ -49,7 +48,7 @@ public class UmsMemberController {
      * @return
      */
     @RequestMapping("/deleteUser")
-    public void deleteUser(Integer id){
+    public void deleteUser(String id){
         umsMemberService.deleteUser(id);
     }
 
@@ -79,7 +78,7 @@ public class UmsMemberController {
      */
     @RequestMapping("/getAllAddress")
     @ResponseBody
-    public List<UmsMemberReceiveAddress> getAllAddress(Integer memberId){
+    public List<UmsMemberReceiveAddress> getAllAddress(String memberId){
         List<UmsMemberReceiveAddress> msMemberReceiveAddresss =  umsMemberReceiveAddressService.getAllAddress(memberId);
         return msMemberReceiveAddresss;
     }
@@ -90,7 +89,7 @@ public class UmsMemberController {
      */
     @RequestMapping("/getAddress")
     @ResponseBody
-    public UmsMemberReceiveAddress getAddress(Integer id){
+    public UmsMemberReceiveAddress getAddress(String id){
         UmsMemberReceiveAddress umsMemberReceiveAddress =  umsMemberReceiveAddressService.getAddress(id);
         return umsMemberReceiveAddress;
     }
@@ -100,7 +99,7 @@ public class UmsMemberController {
      * @return
      */
     @RequestMapping("/deleteAddress")
-    public void deleteAddress(Integer id){
+    public void deleteAddress(String id){
         umsMemberReceiveAddressService.deleteAddress(id);
     }
 
