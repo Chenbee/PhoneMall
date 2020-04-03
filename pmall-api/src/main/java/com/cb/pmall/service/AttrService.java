@@ -2,6 +2,7 @@ package com.cb.pmall.service;
 
 import com.cb.pmall.beans.PmsBaseAttrInfo;
 import com.cb.pmall.beans.PmsBaseAttrValue;
+import com.cb.pmall.beans.PmsBaseSaleAttr;
 
 import java.util.List;
 
@@ -21,4 +22,8 @@ public interface AttrService {
 
     // 改
     List<PmsBaseAttrValue> getAttrValueList(String attrId);
+
+    //增加销售属性
+    List<PmsBaseSaleAttr> baseSaleAttrList();
+
 }

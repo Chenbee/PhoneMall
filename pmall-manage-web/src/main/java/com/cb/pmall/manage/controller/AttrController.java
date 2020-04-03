@@ -3,6 +3,7 @@ package com.cb.pmall.manage.controller;
 import com.alibaba.dubbo.config.annotation.Reference;
 import com.cb.pmall.beans.PmsBaseAttrInfo;
 import com.cb.pmall.beans.PmsBaseAttrValue;
+import com.cb.pmall.beans.PmsBaseSaleAttr;
 import com.cb.pmall.service.AttrService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -19,7 +20,6 @@ public class AttrController {
 
     @Reference
     AttrService attrService;
-
     // 查
     @RequestMapping("attrInfoList")
     @ResponseBody
@@ -50,6 +50,13 @@ public class AttrController {
     public List<PmsBaseAttrValue> getAttrValueList(@RequestParam String  attrId) {
         List<PmsBaseAttrValue> attrValueList = attrService.getAttrValueList(attrId);
         return attrValueList;
+    }
+
+    @RequestMapping("baseSaleAttrList")
+    @ResponseBody
+    public List<PmsBaseSaleAttr> baseSaleAttrList() {
+        List<PmsBaseSaleAttr> saleAttrs = attrService.baseSaleAttrList();
+        return saleAttrs;
     }
 
 }

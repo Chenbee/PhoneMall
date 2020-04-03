@@ -3,8 +3,10 @@ package com.cb.pmall.manage.service.impl;
 import com.alibaba.dubbo.config.annotation.Service;
 import com.cb.pmall.beans.PmsBaseAttrInfo;
 import com.cb.pmall.beans.PmsBaseAttrValue;
+import com.cb.pmall.beans.PmsBaseSaleAttr;
 import com.cb.pmall.manage.mapper.PmsBaseAttrInfoMapper;
 import com.cb.pmall.manage.mapper.PmsBaseAttrValueMapper;
+import com.cb.pmall.manage.mapper.PmsBaseSaleAttrMapper;
 import com.cb.pmall.service.AttrService;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,11 +27,24 @@ public class AttrServiceImpl implements AttrService {
     @Autowired
     PmsBaseAttrValueMapper pmsBaseAttrValueMapper;
 
+    @Autowired
+    PmsBaseSaleAttrMapper pmsBaseSaleAttrMapper;
+
+
+
     @Override
     public List<PmsBaseAttrInfo> attrInfoList(String catalog3Id) {
         PmsBaseAttrInfo pmsBaseAttrInfo = new PmsBaseAttrInfo();
         pmsBaseAttrInfo.setCatalog3Id(catalog3Id);
         List<PmsBaseAttrInfo> pmsBaseAttrInfos = pmsBaseAttrInfoMapper.select(pmsBaseAttrInfo);
+        for (PmsBaseAttrInfo baseAttrInfo : pmsBaseAttrInfos) {
+            String id = baseAttrInfo.getId();
+            PmsBaseAttrValue pmsBaseAttrValue = new PmsBaseAttrValue();
+            pmsBaseAttrValue.setAttrId(id);
+            List<PmsBaseAttrValue> pmsBaseAttrValues = pmsBaseAttrValueMapper.select(pmsBaseAttrValue);
+            // 将查出的pmsBaseAttrValues封装到baseAttrInfo
+            baseAttrInfo.setAttrValueList(pmsBaseAttrValues);
+        }
         return pmsBaseAttrInfos;
     }
 
@@ -57,7 +72,14 @@ public class AttrServiceImpl implements AttrService {
             List<PmsBaseAttrValue> attrValueList = pmsBaseAttrInfo.getAttrValueList();
             // 修改属性值
             for (PmsBaseAttrValue pmsBaseAttrValue : attrValueList) {
-                pmsBaseAttrValueMapper.updateByPrimaryKey(pmsBaseAttrValue);
+                if(pmsBaseAttrValue.getAttrId()==null){
+                    // 如果id为空设置id并插入
+                    pmsBaseAttrValue.setAttrId(pmsBaseAttrInfo.getId());
+                    pmsBaseAttrValueMapper.insertSelective(pmsBaseAttrValue);
+                }else {
+                    // 否则id不为空根据主键修改
+                    pmsBaseAttrValueMapper.updateByPrimaryKey(pmsBaseAttrValue);
+                }
             }
         }
 
@@ -67,6 +89,9 @@ public class AttrServiceImpl implements AttrService {
     @Override
     public void deleteAttrInfoById(String attrId) {
         pmsBaseAttrInfoMapper.deleteByPrimaryKey(attrId);
+        Example example = new Example(PmsBaseAttrValue.class);
+        example.createCriteria().andEqualTo("attrId",attrId);
+        pmsBaseAttrValueMapper.deleteByExample(attrId);
     }
 
     @Override
@@ -75,5 +100,10 @@ public class AttrServiceImpl implements AttrService {
         pmsBaseAttrValue.setAttrId(attrId);
         List<PmsBaseAttrValue> pmsBaseAttrValues = pmsBaseAttrValueMapper.select(pmsBaseAttrValue);
         return pmsBaseAttrValues;
+    }
+
+    @Override
+    public List<PmsBaseSaleAttr> baseSaleAttrList() {
+        return pmsBaseSaleAttrMapper.selectAll();
     }
 }
