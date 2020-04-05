@@ -39,13 +39,13 @@ public class PmsSkuInfo implements Serializable {
     String skuDefaultImg;
 
     @Transient
-    List<PmsSkuImage> SkuImageList;
+    List<PmsSkuImage> skuImageList;
 
     @Transient
-    List<PmsSkuAttrValue> SkuAttrValueList;
+    List<PmsSkuAttrValue> skuAttrValueList;
 
     @Transient
-    List<PmsSkuSaleAttrValue> SkuSaleAttrValueList;
+    List<PmsSkuSaleAttrValue> skuSaleAttrValueList;
 
 
 
@@ -114,26 +114,26 @@ public class PmsSkuInfo implements Serializable {
     }
 
     public List<PmsSkuImage> getSkuImageList() {
-        return SkuImageList;
+        return skuImageList;
     }
 
     public void setSkuImageList(List<PmsSkuImage> skuImageList) {
-        SkuImageList = skuImageList;
+        this.skuImageList = skuImageList;
     }
 
     public List<PmsSkuAttrValue> getSkuAttrValueList() {
-        return SkuAttrValueList;
+        return skuAttrValueList;
     }
 
     public void setSkuAttrValueList(List<PmsSkuAttrValue> skuAttrValueList) {
-        SkuAttrValueList = skuAttrValueList;
+        this.skuAttrValueList = skuAttrValueList;
     }
 
     public List<PmsSkuSaleAttrValue> getSkuSaleAttrValueList() {
-        return SkuSaleAttrValueList;
+        return skuSaleAttrValueList;
     }
 
     public void setSkuSaleAttrValueList(List<PmsSkuSaleAttrValue> skuSaleAttrValueList) {
-        SkuSaleAttrValueList = skuSaleAttrValueList;
+        this.skuSaleAttrValueList = skuSaleAttrValueList;
     }
 }

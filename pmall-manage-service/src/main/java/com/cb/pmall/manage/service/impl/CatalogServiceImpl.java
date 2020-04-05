@@ -1,12 +1,8 @@
 package com.cb.pmall.manage.service.impl;
 
 import com.alibaba.dubbo.config.annotation.Service;
-import com.cb.pmall.beans.PmsBaseCatalog1;
-import com.cb.pmall.beans.PmsBaseCatalog2;
-import com.cb.pmall.beans.PmsBaseCatalog3;
-import com.cb.pmall.manage.mapper.PmsBaseCatalog1Mapper;
-import com.cb.pmall.manage.mapper.PmsBaseCatalog2Mapper;
-import com.cb.pmall.manage.mapper.PmsBaseCatalog3Mapper;
+import com.cb.pmall.beans.*;
+import com.cb.pmall.manage.mapper.*;
 import com.cb.pmall.service.CatalogService;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -47,4 +43,6 @@ public class CatalogServiceImpl implements CatalogService {
         pmsBaseCatalog3.setCatalog2Id(catalog2Id);
         return pmsBaseCatalog3Mapper.select(pmsBaseCatalog3);
     }
+
+
 }

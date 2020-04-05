@@ -49,10 +49,27 @@ public class SkuServiceImpl implements SkuService {
 
         // 保存图片
         List<PmsSkuImage> pmsSkuImageList = pmsSkuInfo.getSkuImageList();
+        String skuDefaultImg = pmsSkuInfo.getSkuDefaultImg();
         for (PmsSkuImage pmsSkuImage : pmsSkuImageList) {
+            if (pmsSkuImage.getImgUrl().equals(skuDefaultImg)){
+                pmsSkuImage.setIsDefault("1");
+            }
             pmsSkuImage.setSkuId(SkuId);
             pmsSkuImageMapper.insertSelective(pmsSkuImage);
         }
         return "success";
+    }
+
+    @Override
+    public PmsSkuInfo getSkuById(String skuId) {
+        PmsSkuInfo pmsSkuInfo = new PmsSkuInfo();
+        pmsSkuInfo.setId(skuId);
+        PmsSkuInfo skuInfo = pmsSkuInfoMapper.selectOne(pmsSkuInfo);
+        return skuInfo;
+    }
+
+    @Override
+    public List<PmsSkuInfo> getSkuSaleAttrValueListBySpu(String spuId) {
+        return pmsSkuInfoMapper.selectSkuSaleAttrValueListBySpu(spuId);
     }
 }

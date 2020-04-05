@@ -29,4 +29,6 @@ public interface SpuService {
 
     // 查spu图片URL
     List<PmsProductImage> spuImageList(String spuId);
+
+    List<PmsProductSaleAttr> spuSaleAttrListCheckBySku(String spuId, String skuId);
 }
