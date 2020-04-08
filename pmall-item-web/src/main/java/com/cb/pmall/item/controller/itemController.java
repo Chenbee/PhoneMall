@@ -2,10 +2,7 @@ package com.cb.pmall.item.controller;
 
 import com.alibaba.dubbo.config.annotation.Reference;
 import com.alibaba.fastjson.JSON;
-import com.cb.pmall.beans.PmsProductSaleAttr;
-import com.cb.pmall.beans.PmsProductSaleAttrValue;
-import com.cb.pmall.beans.PmsSkuInfo;
-import com.cb.pmall.beans.PmsSkuSaleAttrValue;
+import com.cb.pmall.beans.*;
 import com.cb.pmall.service.SkuService;
 import com.cb.pmall.service.SpuService;
 import org.springframework.stereotype.Controller;
@@ -35,17 +32,20 @@ public class itemController {
 
     @RequestMapping("{skuId}.html")
     public String item(@PathVariable String skuId, ModelMap map, HttpServletRequest request) {
+        // 获取IP地址
+        String ip = request.getRemoteAddr();
         // 获取sku
-        PmsSkuInfo skuInfo = skuService.getSkuById(skuId);
+        PmsSkuInfo skuInfo = skuService.getSkuById(skuId,ip);
         // 将sku加入model
         map.put("skuInfo", skuInfo);
-
         // 根据spuId和skuId获取相同spuId的销售属性和销售属性值,用于页面展示
         List<PmsProductSaleAttr> pmsProductSaleAttrs = spuService.spuSaleAttrListCheckBySku(skuInfo.getSpuId(), skuInfo.getId());
         // 将属性值与属性加入modelMap
         map.put("spuSaleAttrListCheckBySku", pmsProductSaleAttrs);
 
-
+        // 获取skuImage并存入
+        List<PmsSkuImage>images = skuService.getSkuImageBySkuId(skuId);
+        skuInfo.setSkuImageList(images);
         // 制作saleAttrHashMap
         Map<String, String> SaleAttrMap = new HashMap<>();
         String key;
@@ -63,7 +63,6 @@ public class itemController {
                 key += pmsSkuSaleAttrValue.getSaleAttrValueId() + "|";
             }
             SaleAttrMap.put(key, value);
-
         }
         // 将hashMap转为Json
         String skuSaleAttrHashJsonStr = JSON.toJSONString(SaleAttrMap);

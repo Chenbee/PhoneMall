@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cb.pmall.manage.mapper.PmsSkuInfoMapper">
+
+    <select id="selectSkuSaleAttrValueListBySpu" resultMap="selectSkuSaleAttrValueListBySpuMap">
+        SELECT
+            si.id AS si_id,
+            ssav.id AS ssav_id,
+            si.*,
+            ssav.*
+        FROM
+            pms_sku_info si,
+            pms_sku_sale_attr_value ssav
+        WHERE
+            si.spu_id = #{spuId}
+        AND si.id = ssav.sku_id;
+    </select>
+
+    <resultMap id="selectSkuSaleAttrValueListBySpuMap" type="com.cb.pmall.beans.PmsSkuInfo" autoMapping="true">
+        <result column="si_id" property="id"></result>
+        <collection property="skuSaleAttrValueList" ofType="com.cb.pmall.beans.PmsSkuSaleAttrValue" autoMapping="true">
+            <result column="ssav_id" property="id"></result>
+        </collection>
+    </resultMap>
+
+
+</mapper>
