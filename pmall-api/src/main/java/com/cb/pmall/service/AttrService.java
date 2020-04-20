@@ -5,6 +5,7 @@ import com.cb.pmall.beans.PmsBaseAttrValue;
 import com.cb.pmall.beans.PmsBaseSaleAttr;
 
 import java.util.List;
+import java.util.Set;
 
 /**
  * @author 陈彬
@@ -26,4 +27,5 @@ public interface AttrService {
     //增加销售属性
     List<PmsBaseSaleAttr> baseSaleAttrList();
 
+    List<PmsBaseAttrInfo> getAttrInfoByValueId(Set<String> valueIdSet);
 }

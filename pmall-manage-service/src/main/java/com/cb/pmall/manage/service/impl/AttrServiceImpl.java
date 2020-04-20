@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import tk.mybatis.mapper.entity.Example;
 
 import java.util.List;
+import java.util.Set;
 
 /**
  * @author 陈彬
@@ -105,5 +106,13 @@ public class AttrServiceImpl implements AttrService {
     @Override
     public List<PmsBaseSaleAttr> baseSaleAttrList() {
         return pmsBaseSaleAttrMapper.selectAll();
+    }
+
+    @Override
+    public List<PmsBaseAttrInfo> getAttrInfoByValueId(Set<String> valueIdSet) {
+        // 将valueId连接成字符串,用户后期数据库检索
+        String valueIdStr = StringUtils.join(valueIdSet, ",");
+        List<PmsBaseAttrInfo> attrInfoList = pmsBaseAttrInfoMapper.selectAttrInfoByValueId(valueIdStr);
+        return attrInfoList;
     }
 }

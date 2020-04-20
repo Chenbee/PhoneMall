@@ -1,9 +1,6 @@
 package com.cb.pmall.service;
 
-import com.cb.pmall.beans.PmsBaseAttrInfo;
-import com.cb.pmall.beans.PmsProductImage;
-import com.cb.pmall.beans.PmsProductSaleAttr;
-import com.cb.pmall.beans.PmsSkuInfo;
+import com.cb.pmall.beans.*;
 
 import java.util.List;
 
@@ -15,7 +12,12 @@ public interface SkuService {
 
     String saveSkuInfo(PmsSkuInfo pmsSkuInfo);
 
-    PmsSkuInfo getSkuById(String skuId);
+    PmsSkuInfo getSkuById(String skuId,String ip);
 
     List<PmsSkuInfo> getSkuSaleAttrValueListBySpu(String spuId);
+
+    List<PmsSkuImage> getSkuImageBySkuId(String skuId);
+
+    List<PmsSkuInfo> getAllSku();
+
 }

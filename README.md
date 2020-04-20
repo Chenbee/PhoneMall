@@ -8,11 +8,14 @@
         完成service与web的分布式框架的搭建      
         pmall-user-web:8080
         pmall-user-service:8070
-    
-    2020.3.31
-        完成后端管理
         pmall-manage-web:8081
         pmall-manage-service:8071
+        pmall-item-web:8082
+        pmall-search-web:8083
+        pmall-search-service:8073
+    2020.3.31
+        完成后端管理
+       
         
     2020.4.2
       spu保存时绑定销售属性;
