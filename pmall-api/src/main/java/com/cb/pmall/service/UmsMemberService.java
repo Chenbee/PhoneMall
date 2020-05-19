@@ -20,4 +20,7 @@ public interface UmsMemberService {
 
     // 添加一个用户
     void addUser(UmsMember umsMember);
+
+    // 用户登录
+    UmsMember login(UmsMember umsMember);
 }

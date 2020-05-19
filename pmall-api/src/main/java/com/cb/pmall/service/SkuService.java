@@ -19,5 +19,4 @@ public interface SkuService {
     List<PmsSkuImage> getSkuImageBySkuId(String skuId);
 
     List<PmsSkuInfo> getAllSku();
-
 }

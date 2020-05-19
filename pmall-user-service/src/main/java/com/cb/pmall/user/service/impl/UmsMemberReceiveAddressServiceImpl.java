@@ -17,9 +17,10 @@ public class UmsMemberReceiveAddressServiceImpl implements UmsMemberReceiveAddre
 
     @Override
     public List<UmsMemberReceiveAddress> getAllAddress(String memberId) {
-        Example e = new Example(UmsMemberReceiveAddress.class);
-        e.createCriteria().andEqualTo("memberId",memberId);
-        return umsMemberReceiveAddressMapper.selectByExample(e);
+        UmsMemberReceiveAddress umsMemberReceiveAddress = new UmsMemberReceiveAddress();
+        umsMemberReceiveAddress.setMemberId(memberId);
+        List<UmsMemberReceiveAddress> select = umsMemberReceiveAddressMapper.select(umsMemberReceiveAddress);
+        return select;
     }
 
     @Override

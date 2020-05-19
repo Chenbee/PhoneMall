@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" href="css\style.css">
+    <script src="js\jquery-3.1.1.min.js" charset="utf-8"></script>
+</head>
+<body>
+<div class="One_Jdbox">
+    <div class="Jdbox_head">
+        <img src="img\logo1.jpg" alt="">
+        <ul>
+            <li><span th:text="'你好,'+ ${nickname}"></span><span>退出</span></li>
+            <li>我的订单</li>
+            <li>支付帮助</li>
+        </ul>
+    </div>
+    <div class="Jd_Con">
+
+
+        <div class="Jd_main">
+            <ul>
+                <li>
+                    <h1>该订单支付完成</h1>
+                </li>
+                <li>
+                </li>
+                <li>
+                </li>
+                <li>
+                </li>
+                <li>
+                    <button id="myOrder">查看订单</button>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+
+</div>
+
+</body>
+<script type="text/javascript">
+    $(function() {
+        $("#myOrder").click(function () {
+            window.location.href = "http://localhost:8086/orderList";
+        })
+
+</script>
+</html>

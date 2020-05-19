@@ -52,14 +52,14 @@ public class SearchController {
         // 利用迭代器删除AttoInfo
         Iterator<PmsBaseAttrInfo> iterator = attrInfoList.iterator();
         List<PmsSearchCrumb> attrValueSelectedList = new ArrayList();
-        while (iterator.hasNext()) {
-            PmsBaseAttrInfo pmsBaseAttrInfo = iterator.next();
-            List<PmsBaseAttrValue> attrValueList = pmsBaseAttrInfo.getAttrValueList();
-            if (attrInfoList != null) {
-                // attrinfoList不为空则去除已查询的属性
-                for (PmsBaseAttrValue pmsBaseAttrValue : attrValueList) {
-                    if (valueIds != null) {
-                        // valueIds不为空,开始去除查询参数
+        if (valueIds != null) {
+            // valueIds不为空,开始去除查询参数
+            while (iterator.hasNext()) {
+                PmsBaseAttrInfo pmsBaseAttrInfo = iterator.next();
+                List<PmsBaseAttrValue> attrValueList = pmsBaseAttrInfo.getAttrValueList();
+                if (attrValueList != null) {
+                    // attrValueList不为空则去除已查询的属性
+                    for (PmsBaseAttrValue pmsBaseAttrValue : attrValueList) {
                         for (String valueId : valueIds) {
                             if (pmsBaseAttrValue.getId().equals(valueId)) {
                                 // 去除attrInfo里的查询条件的valueId,并将其制作成面包屑
